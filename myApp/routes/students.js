@@ -3,7 +3,6 @@ var router = express.Router();
 var db = require('monk')('localhost/users');
 var userCollection = db.get('users');
 var studentCollection= db.get('students');
-var bcrypt = require('bcrypt');
 
 /* GET home page. */
 router.post('/', function(req, res, next) {
@@ -31,7 +30,29 @@ router.post('/', function(req, res, next) {
         }      
     });
   }
+});
 
+router.get('/:id', function(req, res, next) {
+  var username = req.session.username;
+  studentCollection.findOne({_id: req.params.id}, function (err, data) {
+    res.render('show', {student: data, username: username});
+  });
 });
 
 module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

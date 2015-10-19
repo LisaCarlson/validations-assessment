@@ -34,16 +34,19 @@ block content
                   td= student.name
                   td= student.phone
                   td= student.email
+                  td 
+                    #[a(class='btn btn-info' href='/students/'+student._id) Show Student]
       .col-md-6
         h2 Add a Student
+        hr
         include errors
         form.form-group(action='/students' method='post')
           label(for='name') Name
-          input.form-control(type='text' name='name' id='name')
+          input.form-control(type='text' name='name' id='name' placeholder='First Last')
           label(for='phone') Phone Number
-          input.form-control(type='text' name='phone' id='phone')
+          input.form-control(type='text' name='phone' id='phone' placeholder='XXX-XXX-XXXX')
           label(for='email') Email
-          input.form-control(type='email' name='email' id='email')
+          input.form-control(type='email' name='email' id='email' placeholder='example@example.com')
           button.btn.btn-success(type='submit') Add Student
 
 
