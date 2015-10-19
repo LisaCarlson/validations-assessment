@@ -18,15 +18,51 @@ block content
           li
             a(href='/signout') Sign Out
   .container
-    .col-md-6.col-md-offset-3
-      h3 List of Students
-      table.table.table-bordered.table-striped.table-hover
-        thead
-          tr
-            th Name
-            th Phone Number
-        tbody
-          for student in allStudents
+    .row
+      .col-md-6
+        h2 List of Students
+        table.table.table-bordered.table-striped.table-hover
+          thead
             tr
-              td= student.name
-              td= student.phone
+              th Name
+              th Phone Number
+              th Email
+          tbody
+            if allStudents
+              for student in allStudents
+                tr
+                  td= student.name
+                  td= student.phone
+                  td= student.email
+      .col-md-6
+        h2 Add a Student
+        include errors
+        form.form-group(action='/students' method='post')
+          label(for='name') Name
+          input.form-control(type='text' name='name' id='name')
+          label(for='phone') Phone Number
+          input.form-control(type='text' name='phone' id='phone')
+          label(for='email') Email
+          input.form-control(type='email' name='email' id='email')
+          button.btn.btn-success(type='submit') Add Student
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
