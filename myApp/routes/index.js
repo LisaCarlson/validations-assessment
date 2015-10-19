@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('monk')('localhost/users');
 var userCollection = db.get('users');
+var studentCollection= db.get('students');
 var bcrypt = require('bcrypt');
 
 /* GET home page. */
@@ -11,7 +12,9 @@ router.get('/', function(req, res, next) {
 
 router.get('/home', function(req, res, next) {
   var username = req.session.username;
-  res.render('home', { username: username });
+  studentCollection.find({}, function (err, data) {
+    res.render('home', { username: username, allStudents: data });
+  });
 });
 
 router.get('/signout', function(req, res, next) {

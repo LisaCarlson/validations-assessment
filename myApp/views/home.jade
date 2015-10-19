@@ -18,3 +18,15 @@ block content
           li
             a(href='/signout') Sign Out
   .container
+    .col-md-6.col-md-offset-3
+      h3 List of Students
+      table.table.table-bordered.table-striped.table-hover
+        thead
+          tr
+            th Name
+            th Phone Number
+        tbody
+          for student in allStudents
+            tr
+              td= student.name
+              td= student.phone
