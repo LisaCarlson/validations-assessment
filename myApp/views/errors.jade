@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  if errors
+    .alert.alert-danger(role="alert")
+      p
+        strong User Errors
+      for error in errors
+        p= error
+    
