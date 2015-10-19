@@ -37,6 +37,9 @@ router.post('/register', function(req, res, next) {
   if(req.body.email.length == 0) {
     errors.push('Email cannot be blank');
   }
+  if (!req.body.email.match("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")){
+     errors.push("Email is not valid email.");
+  }
   if(req.body.password.length == 0) {
     errors.push('Password cannot be blank');
   }

@@ -7,8 +7,19 @@ var studentCollection= db.get('students');
 /* GET home page. */
 router.post('/', function(req, res, next) {
   var errors = [];
+  var nameCheck = req.body.name.split(' ');
+  var phoneCheck = req.body.phone.split('-');
+  if (nameCheck.length == 1) {
+    errors.push("Please include first and last name");
+  }
+  if (phoneCheck.length !== 3) {
+    errors.push("Please enter phone number in the format XXX-XXX-XXXX");
+  }
   if (req.body.name.length == 0) {
     errors.push("Student name cannot be blank");
+  }
+  if (!req.body.email.match("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")){
+     errors.push("Email is not valid email.");
   }
   if (req.body.phone.length == 0) {
     errors.push("Phone number cannot be blank");
